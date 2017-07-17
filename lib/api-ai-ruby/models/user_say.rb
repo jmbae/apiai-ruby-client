@@ -5,7 +5,7 @@ module ApiAiRuby
     # @param data [Array]
     # @param isTemplate [Boolean]
     # @param count [Integer]
-    def initialize (data, isTemplate, count)
+    def initialize(data, isTemplate, count)
       @data       = data
       @isTemplate = isTemplate
       @count      = count

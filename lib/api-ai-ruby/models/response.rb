@@ -10,7 +10,7 @@ module ApiAiRuby
     def initialize (resetContexts, action, affectedContexts, parameters, speech)
       @resetContexts    = resetContexts
       @action           = action
-      @affectedContexts = affectedContext
+      @affectedContexts = affectedContexts
       @parameters       = parameters
       @speech           = speech
     end
@@ -19,7 +19,7 @@ module ApiAiRuby
       {
         :resetContexts    => resetContexts,
         :action           => action,
-        :affectedContexts => affectedContext,
+        :affectedContexts => affectedContexts,
         :parameters       => parameters,
         :speech           => speech
       }.to_json(*args)

@@ -5,7 +5,7 @@ module ApiAiRuby
     # @param text  [String]
     # @param alias [String]
     # @param meta  [String]
-    def initialize (text, data_alias, meta)
+    def initialize(text, data_alias, meta)
       @text  = text
       @alias = data_alias
       @meta  = meta
