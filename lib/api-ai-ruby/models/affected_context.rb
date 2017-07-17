@@ -4,7 +4,7 @@ module ApiAiRuby
 
     # @param name [String]
     # @param lifespan [Integer]
-    def initialize(name, :lifespan)
+    def initialize(name, lifespan)
       @name = name
       @lifespan = lifespan
     end
