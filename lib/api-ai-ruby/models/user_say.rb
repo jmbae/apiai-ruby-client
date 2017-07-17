@@ -19,8 +19,8 @@ module ApiAiRuby
       }.to_json(*args)
     end
 
-    def add_data(text, alias, meta)
-      @data.push new ApiAiRuby::UserSayData(text, alias, meta)
+    def add_data(text, data_alias, meta)
+      @data.push new ApiAiRuby::UserSayData(text, data_alias, meta)
     end
   end
 end

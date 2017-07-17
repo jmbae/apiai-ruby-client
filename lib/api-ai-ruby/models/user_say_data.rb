@@ -5,16 +5,16 @@ module ApiAiRuby
     # @param text  [String]
     # @param alias [String]
     # @param meta  [String]
-    def initialize (text, alias, meta)
+    def initialize (text, data_alias, meta)
       @text  = text
-      @alias = alias
+      @alias = data_alias
       @meta  = meta
     end
 
     def to_json(*args)
       {
           :text  => text,
-          :alias => alias,
+          :alias => data_alias,
           :meta  => meta
       }.to_json(*args)
     end
