@@ -97,6 +97,11 @@ module ApiAiRuby
       ApiAiRuby::UserEntitiesRequest.new(self, {uri_path: 'entities'})
     end
 
+    # @return [ApiAiRuby::IntentsRequest]
+    def create_intents_request
+      ApiAiRuby::IntentsRequest.new(self)
+    end
+
     # @return [ApiAiRuby::ContextsRequest]
     def create_contexts_request
       ApiAiRuby::ContextsRequest.new(self)
