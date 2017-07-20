@@ -42,18 +42,25 @@ module ApiAiRuby
       self.perform
     end
 
-    def update(iid, name, auto, contexts, templates, userSays, responses, priority, extend = false)
+    def list
+      @request_method = :get
+      @uri = @crud_base_uri
+      @options = nil
+      self.perform
+    end
+
+    def update(iid, intent, extend = false)
 
       raise ApiAiRuby::ClientError.new('Intent iid required') if !iid
 
       @options[:extend]    = extend
-      @options[:name]      = name
-      @options[:auto]      = auto
-      @options[:contexts]  = contexts
-      @options[:templates] = templates
-      @options[:userSays]  = userSays
-      @options[:responses] = responses
-      @options[:priority]  = priority
+      @options[:name]      = intent.name
+      @options[:auto]      = intent.auto
+      @options[:contexts]  = intent.contexts
+      @options[:templates] = intent.templates
+      @options[:userSays]  = intent.user_says
+      @options[:responses] = intent.responses
+      @options[:priority]  = intent.priority
 
       @request_method = :put
       @uri = @crud_base_uri + '/' + iid
