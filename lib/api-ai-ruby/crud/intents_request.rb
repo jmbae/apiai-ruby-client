@@ -58,7 +58,7 @@ module ApiAiRuby
       @options[:auto]      = intent.auto
       @options[:contexts]  = intent.contexts
       @options[:templates] = intent.templates
-      @options[:userSays]  = intent.user_says
+      @options[:userSays]  = intent.userSays
       @options[:responses] = intent.responses
       @options[:priority]  = intent.priority
 
