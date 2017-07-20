@@ -40,11 +40,12 @@ module ApiAiRuby
     private
 
     def fail_or_return_response_body(code, body)
-      error = false
+      # error = false
       if code != 200 || (body.is_a?(Hash) && body[:status] && body[:status][:code] && body[:status][:code] != 200)
         error = ApiAiRuby::RequestError.new body[:status][:errorDetails], body[:status][:code]
       end
-      fail(error) if error
+      return error if error.present?
+      puts body
       body
     end
 
