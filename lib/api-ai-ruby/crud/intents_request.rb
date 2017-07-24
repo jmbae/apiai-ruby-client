@@ -79,7 +79,7 @@ module ApiAiRuby
     def delete(iid)
       raise ApiAiRuby::ClientError.new('Intent iid required') if !iid
       @request_method = :delete
-      @uri = @crud_base_uri + '/' + name
+      @uri = @crud_base_uri + '/' + iid
       self.perform
     end
 
