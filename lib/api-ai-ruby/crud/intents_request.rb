@@ -1,17 +1,19 @@
 module ApiAiRuby
   class IntentsRequest < ApiAiRuby::RequestQuery
-
-    def initialize(client,  options = {})
+    def initialize(client, options = {})
       super client, options
-      @headers['Content-Type'] = 'application/json; charset=UTF-8'
+      @headers = {
+        'Content-Type'.to_sym => 'application/json; charset=UTF-8',
+        :Authorization => 'Bearer ' + client.developer_access_token
+      }
       @crud_base_uri = client.api_base_url + 'intents'
     end
 
     # @param argument [Array<ApiAiRuby::Intent, Hash>, ApiAiRuby::Intent, Hash]
     # @return [Hash]
     def create(argument)
-      if !(argument && (argument.is_a?(Array) || argument.is_a?(Hash) || argument.is_a?(ApiAiRuby::Intent)))
-        raise ApiAiRuby::ClientError.new('Argument should be array of Intents or single Intent object')
+      unless argument && (argument.is_a?(Array) || argument.is_a?(Hash) || argument.is_a?(ApiAiRuby::Intent))
+        raise ApiAiRuby::ClientError, 'Argument should be array of Intents or single Intent object'
       end
       @uri = @crud_base_uri
       @request_method = :post
@@ -26,7 +28,7 @@ module ApiAiRuby
           @options[:intents] = argument.is_a?(Array) ? argument : [argument]
         end
 
-        response = self.perform
+        response = perform
 
         @options.delete(:intents) if @options.respond_to? :delete
       rescue
@@ -36,22 +38,21 @@ module ApiAiRuby
     end
 
     def retrieve(iid)
-      raise ApiAiRuby::ClientError.new('Intent iid required') if !iid
+      raise ApiAiRuby::ClientError, 'Intent iid required' unless iid
       @request_method = :get
       @uri = @crud_base_uri + '/' + iid
-      self.perform
+      perform
     end
 
     def list
       @request_method = :get
       @uri = @crud_base_uri
       @options = nil
-      self.perform
+      perform
     end
 
     def update(iid, intent, extend = false)
-
-      raise ApiAiRuby::ClientError.new('Intent iid required') if !iid
+      raise ApiAiRuby::ClientError, 'Intent iid required' unless iid
 
       @options[:extend]    = extend
       @options[:name]      = intent.name
@@ -64,7 +65,7 @@ module ApiAiRuby
 
       @request_method = :put
       @uri = @crud_base_uri + '/' + iid
-      response = self.perform
+      response = perform
       @options.delete(:extend)
       @options.delete(:name)
       @options.delete(:auto)
@@ -77,11 +78,10 @@ module ApiAiRuby
     end
 
     def delete(iid)
-      raise ApiAiRuby::ClientError.new('Intent iid required') if !iid
+      raise ApiAiRuby::ClientError, 'Intent iid required' unless iid
       @request_method = :delete
       @uri = @crud_base_uri + '/' + iid
-      self.perform
+      perform
     end
-
   end
 end

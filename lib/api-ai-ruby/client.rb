@@ -3,7 +3,7 @@ require 'securerandom'
 module ApiAiRuby
   class Client
 
-    attr_accessor :client_access_token, :timeout_options
+    attr_accessor :client_access_token, :developer_access_token, :timeout_options
     attr_writer :user_agent, :api_version, :api_lang, :api_base_url, :api_session_id
 
     # Initializes a new Client object
@@ -50,6 +50,7 @@ module ApiAiRuby
     def credentials
       {
           client_access_token: client_access_token,
+          developer_access_token: developer_access_token
       }
     end
 
